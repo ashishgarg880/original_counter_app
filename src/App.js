@@ -1,63 +1,64 @@
 import './App.css';
 import React,{Component} from 'react';
-import Images from './component/images';
-import List from './component/list';
-import { Stack} from "@mui/material";
+import Images from "./component/images"
+import List from './component/Header';
+import Counter from './component/counter'
 //import { borderColor } from '@mui/system';
 //import { blueGrey } from '@mui/material/colors';
 export default class App extends Component{
-  constructor(props){
-     super(props);
-     this.state = {
-       counters : [
-         { id:1, value:0},
-         { id:2, value:0},
-         { id:3, value:0},
-         { id:4, value:0}
-       ],
-     };
-  }
-  counterReset = () =>{
-    let counters = this.state.counters.map(
-      (item) => 
-      {item.value = 0; 
-      return item});
-    this.setState({counters});
-  }
-  counterRecycle(){
-    window.location.reload();
-  }
-  incCount = (i) =>{
-   // console.log(this.state.counters);
-    let counters = [...this.state.counters];
-    let index = counters.indexOf(i);
+  state= {counters:[{id:1,value:0},{id:2,value:0},{id:3,value:0},{id:4,value:0}]}
+  handleIncrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counters[index] };
     counters[index].value++;
     this.setState({ counters });
-  }
-  decCount = (i) =>{
-    let counters = [...this.state.counters];
-    let index = counters.indexOf(i);
-    
+  };
+
+  handleDecrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counters[index] };
     counters[index].value--;
     this.setState({ counters });
-  }
-  itemDelete = (counterId) =>{
-    let counters = this.state.counters.filter((c) => c.id !== counterId);
+  };
+
+  handleReset = () => {
+    const counters = this.state.counters.map((c) => {
+      c.value = 0;
+      return c;
+    });
     this.setState({ counters });
   };
+
+  handleDelete = (counterId) => {
+    const counters = this.state.counters.filter((c) => c.id !== counterId);
+    this.setState({ counters });
+  };
+
+  handleRestart = () => {
+    window.location.reload();
+  };
   render(){
+    
+    let stylesheet = {textAlign:"center",padding:"30px"}
+    let style1 ={border:"5px solid #34bdbd",backgroundColor:"#7bebe1",borderRadius:"25px",padding:"50px"}
     return (
-    <Stack sx={{border:10,borderColor: 'skyblue', mt:2,mx:10,borderRadius:16,}}>
-    <Images items = { this.state.counters.filter(item => item.value >0).length }/>
-    <List
-      items = {this.state.counters}
-      counterReset = {this.counterReset}
-      incCount = {this.incCount}
-      decCount = {this.decCount}
-      itemDelete = {this.itemDelete}
-      counterRecycle = {this.counterRecycle}
-    />
-    </Stack>
+      <div style={stylesheet}>
+        <header>
+          <List />
+        </header> 
+        <div style={style1}>
+          <Counter />
+          <Images counters={this.state.counters}
+              onReset={this.handleReset}
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleDecrement}
+              onDelete={this.handleDelete}
+              onRestart={this.handleRestart}/>
+          <Images />  
+        </div>
+      </div>
     )
   }
 }

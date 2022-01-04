@@ -1,5 +1,4 @@
 {
-  "homepage": "https://ashishgarg880.github.io/counter-newton-app/",
   "name": "counter-app",
   "version": "0.1.0",
   "private": true,
@@ -10,7 +9,6 @@
     "@mui/material": "^5.2.5",
     "@mui/styled-engine": "^5.2.5",
     "@mui/styled-engine-sc": "^5.1.0",
-    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
@@ -19,8 +17,6 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

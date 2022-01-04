@@ -1,27 +1,23 @@
-import React from "react";
-import { Stack,Box } from "@mui/material";
-//import { color, textAlign } from "@mui/system";
-import { ShoppingCart } from "@mui/icons-material";
-
-
+import React,{useState} from "react";
 export default function Images(props){
+    let[AddData,setData] = useState(0);
+    // // let [Delete,allDelete] = useState(0);
+    const StyleSheet = {fontWeight:"700",padding:"10px",backgroundColor:"#fcf828",border:"1px solid black",borderRadius:"25px"}
+
+    const Delete=(e)=>{
+        if(e!==""){
+            e.splice();
+        }
+    }   
+    
     return (
-        <nav>
-            <Stack direction="row" justifyContent="center">
-            
-            <Box sx={
-                    {   my: 10,
-                        mb: 5,
-                        borderRadius: 25,
-                        p:5,
-                        backgroundColor: 'secondary.dark',
-                        justifyContent:'space-between'
-                    }
-                }>
-                <ShoppingCart />
-                <span>{props.items}</span>
-                <span> Items</span></Box>
-            </Stack>
-        </nav>
+        <div className="Images-section">
+            <div className="section2">
+                <span style={StyleSheet} >{AddData}</span>
+                <button className="btn btn-secondary" onClick={()=>setData(AddData+1)}>+</button>
+                <button className="btn btn-info" style={{color:"#fff"}} disabled={AddData===0? "disable":""} onClick={()=>setData(AddData-1)}>-</button>
+                <button className="btn btn-danger" onClick={Delete}><i className="fa fa-trash"></i></button>
+            </div>
+        </div>
     )
 }
