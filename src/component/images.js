@@ -1,23 +1,29 @@
-import React,{useState} from "react";
-export default function Images(props){
-    let[AddData,setData] = useState(0);
-    // // let [Delete,allDelete] = useState(0);
-    const StyleSheet = {fontWeight:"700",padding:"10px",backgroundColor:"#fcf828",border:"1px solid black",borderRadius:"25px"}
+import React from "react";
+function Images(props){
+    const formatCount=()=>{
+        const {value} = props.counter;
+        return value === 0? "ZERO":value;
+    };
 
-    const Delete=(e)=>{
-        if(e!==""){
-            e.splice();
-        }
-    }   
-    
     return (
-        <div className="Images-section">
-            <div className="section2">
-                <span style={StyleSheet} >{AddData}</span>
-                <button className="btn btn-secondary" onClick={()=>setData(AddData+1)}>+</button>
-                <button className="btn btn-info" style={{color:"#fff"}} disabled={AddData===0? "disable":""} onClick={()=>setData(AddData-1)}>-</button>
-                <button className="btn btn-danger" onClick={Delete}><i className="fa fa-trash"></i></button>
-            </div>
+        <div className="btn-div">
+            <label style={{fontSize:"20px",backgroundColor:"yellow",color:"black",fontWeight:"300",padding:"5px",borderRadius:"25px",width:"20%",border:"1px solid black"}}>
+                    {formatCount()}
+            </label>
+            <button 
+                className="btn btn-secondary" 
+                    onClick={()=>props.onIncrement(props.counter)}>
+                        +
+            </button>
+            <button className="btn btn-info" 
+                    style={{color:"#fff"}}  
+                    onClick={()=>props.onDecrement(props.counter)}>
+                        -
+            </button>
+            <button className="btn btn-danger"  
+                    onClick={() => props.onDelete(props.counter.id)}>
+                        <i className="fa fa-trash"></i></button> 
         </div>
-    )
-}
+        )
+    }
+export default Images;

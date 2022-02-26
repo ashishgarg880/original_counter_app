@@ -1,13 +1,17 @@
 import './App.css';
 import React,{Component} from 'react';
-import Images from "./component/images"
-import List from './component/Header';
 import Counter from './component/counter'
+import Header from  './component/Header'
+import CountImages from './component/countImage'
+
 //import { borderColor } from '@mui/system';
 //import { blueGrey } from '@mui/material/colors';
 export default class App extends Component{
-  state= {counters:[{id:1,value:0},{id:2,value:0},{id:3,value:0},{id:4,value:0}]}
-  handleIncrement = (counter) => {
+  state= {
+    counters:[
+      {id:1,value:0},{id:2,value:0},{id:3,value:0},{id:4,value:0}]}
+  
+    handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = { ...counters[index] };
@@ -40,23 +44,26 @@ export default class App extends Component{
     window.location.reload();
   };
   render(){
-    
     let stylesheet = {textAlign:"center",padding:"30px"}
-    let style1 ={border:"5px solid #34bdbd",backgroundColor:"#7bebe1",borderRadius:"25px",padding:"50px"}
+    let style1 ={border:"5px solid #34bdbd",backgroundColor:"#7bebe1",borderRadius:"25px",margin:"0px"}
     return (
       <div style={stylesheet}>
+      
         <header>
-          <List />
-        </header> 
-        <div style={style1}>
-          <Counter />
-          <Images counters={this.state.counters}
-              onReset={this.handleReset}
-              onIncrement={this.handleIncrement}
-              onDecrement={this.handleDecrement}
-              onDelete={this.handleDelete}
-              onRestart={this.handleRestart}/>
-          <Images />  
+          <Header/>
+        </header>
+        <div className="body">
+        <Counter 
+              totalCounters={this.state.counters.filter((c)=>c.value > 0).length}
+        />
+        </div>
+        <div className='CounterImages'>
+          <CountImages onReset={this.handleReset}
+                  onRestart={this.handleRestart}
+                  onIncrement={this.handleIncrement}
+                  counter={this.state.counters}
+                  onDelete={this.handleDelete}
+                  onDecrement={this.handleDecrement}/>
         </div>
       </div>
     )

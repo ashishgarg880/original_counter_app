@@ -29,8 +29,9 @@
 }
 
 .section2{
-  display:flex;
-  padding:20px;
+  position:relative;
+  top:0;
+  left:0;
 }
 
 .div1 .btn{
