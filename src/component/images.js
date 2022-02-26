@@ -7,7 +7,7 @@ function Images(props){
 
     return (
         <div className="btn-div">
-            <label style={{fontSize:"20px",backgroundColor:"yellow",color:"black",fontWeight:"300",padding:"5px",borderRadius:"25px",width:"20%",border:"1px solid black"}}>
+            <label style={{fontSize:"20px",backgroundColor:"yellow",color:"black",fontWeight:"800",padding:"5px",borderRadius:"25px",width:"80px",border:"1px solid black"}}>
                     {formatCount()}
             </label>
             <button 
