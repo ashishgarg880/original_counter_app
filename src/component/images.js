@@ -16,7 +16,8 @@ function Images(props){
                         +
             </button>
             <button className="btn btn-info" 
-                    style={{color:"#fff"}}  
+                    style={{color:"#fff"}} 
+                    disabled={props.counter.value===0? "disable":""} 
                     onClick={()=>props.onDecrement(props.counter)}>
                         -
             </button>
