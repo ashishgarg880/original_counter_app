@@ -45,7 +45,6 @@ export default class App extends Component{
   };
   render(){
     let stylesheet = {textAlign:"center",padding:"30px"}
-    let style1 ={border:"5px solid #34bdbd",backgroundColor:"#7bebe1",borderRadius:"25px",margin:"0px"}
     return (
       <div style={stylesheet}>
       
